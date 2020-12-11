@@ -28,35 +28,23 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-
-        //ArrayList<String> arrayList = new ArrayList<String>();
-        //arrayList = mydb.getProfileList();
-        //ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
-
         mydb = new DBHelper(this);
-        ArrayList<Player> arrayOfUsers = new ArrayList<Player>();
+        ArrayList<Player> arrayOfUsers;
         arrayOfUsers = mydb.getProfileList();
         ProfileAdapter profadapt = new ProfileAdapter(this, arrayOfUsers);
 
         itemListView = (ListView) findViewById(R.id.listView1);
         itemListView.setAdapter(profadapt);
 
-      //  itemListView = findViewById(R.id.listView1);
-     //   itemListView.setAdapter(arrayAdapter);
-       itemListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+       itemListView.setOnItemClickListener((parent, view, position, id) -> {
 
-                Player player = (Player)itemListView.getItemAtPosition(position);
+           Player player = (Player)itemListView.getItemAtPosition(position);
 
-                //Toast.makeText(getApplicationContext()," " + myItem,Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(getApplicationContext(),DisplayItemActivity.class);
-                intent.putExtra("id",player.getId());
-                startActivity(intent);
-                finish();
-            }
-        });
+           Intent intent = new Intent(getApplicationContext(),DisplayItemActivity.class);
+           intent.putExtra("id",player.getId());
+           startActivity(intent);
+           finish();
+       });
 
     }
 
@@ -68,7 +56,6 @@ public class MainActivity2 extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu2, menu);
         return true;
     }
@@ -96,7 +83,9 @@ public class MainActivity2 extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this, "onBackPressed", Toast.LENGTH_SHORT).show();
+        finish();
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
     }
 
 }

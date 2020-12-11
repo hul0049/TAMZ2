@@ -16,6 +16,7 @@ public class Player {
         this.score = score;
         ships = new Ship[number];
     }
+
     public void setNick(String nick) {
         this.nick = nick;
     }
