@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.hul0049_tamz2_lode.Classes.Board;
 import com.example.hul0049_tamz2_lode.Classes.DBHelper;
+import com.example.hul0049_tamz2_lode.Classes.GameView;
 import com.example.hul0049_tamz2_lode.Classes.Player;
 import com.example.hul0049_tamz2_lode.Classes.ProfileAdapter;
 
@@ -73,15 +74,20 @@ public class MainActivity extends AppCompatActivity {
                 player1 = (Player) itemListView.getItemAtPosition(position);
                 text.setText("Choose second player");
             }
-            else
-                player2 = (Player)itemListView.getItemAtPosition(position);
+            else {
+                player2 = (Player) itemListView.getItemAtPosition(position);
+            }
 
             if(player2!=null)
-            {
+            {   itemListView.setVisibility(View.INVISIBLE);
+                text.setVisibility(View.INVISIBLE);
                 Board boardForPl1 = new Board(10,player1);
                 Board boardForPl2 = new Board(10,player2);
-                boardForPl1.initilizeBoard();
-                boardForPl2.initilizeBoard();
+                boardForPl1.InitializeBoard();
+                boardForPl2.InitializeBoard();
+
+                GameView gameView = findViewById(R.id.gameView);
+                gameView.setLevel(player1,player2,boardForPl1,boardForPl2);
             }
         });
 

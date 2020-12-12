@@ -10,14 +10,23 @@ public class Board {
     private final int size;
     private Player player;
     private final int shipcount = 7;
+    private int[] hits;
+
     public Board(int size, Player player) {
         this.size = size;
         this.player = player;
+        hits = new int [size*size];
+        for (int i = 0 ; i<size*size ; i++)
+        {
+            hits[i]=-1;
+        }
+
     }
 
-    public void initilizeBoard() {
+    public void InitializeBoard() {
         SetShips(player);
     }
+
     private boolean IsPossible(int x, int y) {
        if(x >= size || y >= size || x < 0 || y < 0)
            return false;
@@ -43,6 +52,7 @@ public class Board {
        }
         return true;
     }
+
     private boolean IsAdjustable(int x, int y, Type type, Side side) {
 
         if (!IsPossible(x, y))
@@ -216,6 +226,7 @@ public class Board {
             }
             return false;
     }
+
     private void SetShips(Player player){
         Random random = new Random();
         int x,y;
@@ -495,13 +506,23 @@ public class Board {
                 i--;
         }
     }
+
     private Side randomSide() {
         int pick = new Random().nextInt(Side.values().length);
         return Side.values()[pick];
     }
+
     private Type randomType() {
         int pick = new Random().nextInt(Type.values().length);
         return Type.values()[pick];
+    }
+
+    public int[] getHits() {
+        return hits;
+    }
+
+    public void setHits(int[] hits) {
+        this.hits = hits;
     }
 
     public int getShipcount() {
