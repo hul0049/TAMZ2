@@ -36,7 +36,7 @@ public class MainActivity2 extends AppCompatActivity {
         itemListView = (ListView) findViewById(R.id.listView1);
         itemListView.setAdapter(profadapt);
 
-       itemListView.setOnItemClickListener((parent, view, position, id) -> {
+        itemListView.setOnItemClickListener((parent, view, position, id) -> {
 
            Player player = (Player)itemListView.getItemAtPosition(position);
 

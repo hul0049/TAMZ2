@@ -98,6 +98,29 @@ public class DBHelper extends SQLiteOpenHelper{
 
             return arrayList;
         }
+    public ArrayList<Player> getProfileListWithOutPlayer(Player pl)
+    {
+        ArrayList<Player> arrayList = new ArrayList<Player>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from profiles", null );
+        res.moveToFirst();
+
+        while(res.isAfterLast() == false){
+
+            String nick = res.getString(res.getColumnIndex(PROFILE_COLUMN_NICK));
+            String score = res.getString(res.getColumnIndex(PROFILE_COLUMN_SCORE));
+            int id = res.getInt(0);
+            if(pl.getId()!=id)
+            {
+                Player player = new Player(id,nick,score);
+                arrayList.add(player);
+            }
+
+            res.moveToNext();
+        }
+
+        return arrayList;
+    }
 
         public int removeAll()
         {

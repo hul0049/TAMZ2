@@ -1,6 +1,7 @@
 package com.example.hul0049_tamz2_lode.Classes;
 
 import com.example.hul0049_tamz2_lode.Classes.Ship;
+import com.example.hul0049_tamz2_lode.Enums.Difficult;
 
 public class Player {
     private int id;
@@ -39,6 +40,14 @@ public class Player {
 
     public String getNick() {
         return nick;
+    }
+
+    public Difficult getDifficult() {
+        return Difficult.EASY;
+    }
+
+    public void setDifficult(Difficult difficult) {
+
     }
 
     public int getId() {

@@ -30,15 +30,13 @@ public class DisplayItemActivity extends AppCompatActivity {
         Intent i = getIntent();
         if(i !=null)
         {
-            //ziskam ID, ktere se ma editovat/zobrazit/mazat - poslane z hlavni aktivity
+
             int value = i.getIntExtra("id", 0);
             idToUpdate = value;
             if (idToUpdate > 0)
             {
-                //z db vytahnu zaznam pod hledanym ID a ulozim do idToUpdate
-                Player player = mydb.getData(idToUpdate);
 
-                //z DB vytahnu jmeno zaznamu
+                Player player = mydb.getData(idToUpdate);
 
                 Button b = findViewById(R.id.buttonSave);
                 b.setVisibility(View.INVISIBLE);

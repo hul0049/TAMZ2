@@ -10,6 +10,7 @@ public class Board {
     private final int size;
     private Player player;
     private final int shipcount = 7;
+    private int shipalive =7;
     private int[] hits;
 
     public Board(int size, Player player) {
@@ -524,8 +525,19 @@ public class Board {
     public void setHits(int[] hits) {
         this.hits = hits;
     }
+    public int getSize() {
+        return size;
+    }
 
     public int getShipcount() {
         return shipcount;
+    }
+
+    public int getShipalive() {
+        return shipalive;
+    }
+
+    public void setShipalive(int shipalive) {
+        this.shipalive = shipalive;
     }
 }
